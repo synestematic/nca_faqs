@@ -5,7 +5,7 @@ class Transport {
 	public $from_compound = "";
 	public $to_compound = "";
 	public $to_zip = "";
-	public $price = "asd";
+	public $price = "-";
 
 	private static function instantiate($result) {
 		$object = new self;
@@ -114,7 +114,7 @@ class Transport {
 	}
 	public static function lcs_menu($name) {
 		global $_POST;
-		echo '<select  style="width:70%" name="'.$name.'">';
+		echo '<select  style="width:80%" name="'.$name.'">';
 		echo "<option selected>";
 		echo "";
 		echo "</option>";
@@ -133,7 +133,7 @@ class Transport {
 	}
 	public static function lcxs_menu($name) {
 		global $_POST;
-		echo '<select style="width:70%" name="'.$name.'">';
+		echo '<select style="width:80%" name="'.$name.'">';
 		echo "<option selected>";
 		echo "";
 		echo "</option>";

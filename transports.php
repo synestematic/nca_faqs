@@ -1,11 +1,16 @@
 <?php
 require_once("private/initialize.php");
 
-
 if (isset($_POST["submit"])) {
 
-    $transport_richiesto = new Transport();
+  $transport_richiesto = new Transport();
 
+  if ( ( ($_POST["branch_origine"] !== "") && ($_POST["lcx_origine"] !== "") ) ||
+       ( ($_POST["branch_origine"] !== "") && ($_POST["lc_origine"] !== "") ) ||
+       ( ($_POST["lcx_origine"] !== "") && ($_POST["lc_origine"] !== "") ) ||
+       ( ($_POST["lc_destino"] !== "") && ($_POST["zip_destino"] !== "") )
+     ) { $transport_richiesto->price = "--"; }
+  else {
     //C2M DOMESTIC + branch
     if (($_POST["lc_origine"] !== "") && ($_POST["zip_destino"] !== "")) {
       $transport_richiesto->from_compound = $_POST["lc_origine"];
@@ -17,7 +22,6 @@ if (isset($_POST["submit"])) {
       $transport_richiesto->to_zip = $_POST["zip_destino"];
       $transport_richiesto->branch_to_zip();
     }
-
     //C2C DOMESTIC + branch
     if (($_POST["lc_origine"] !== "") && ($_POST["lc_destino"] !== "")) {
       $transport_richiesto->from_compound = $_POST["lc_origine"];
@@ -29,20 +33,19 @@ if (isset($_POST["submit"])) {
       $transport_richiesto->to_compound = $_POST["lc_destino"];
       $transport_richiesto->branch_to_lc();
     }
-
     //C2M INTL
     if (($_POST["lcx_origine"] !== "") && ($_POST["zip_destino"] !== "")) {
       $transport_richiesto->from_compound = $_POST["lcx_origine"];
       $transport_richiesto->to_zip = $_POST["zip_destino"];
       $transport_richiesto->lcx_to_zip();
     }
-
     //C2C INTL
     if (($_POST["lcx_origine"] !== "") && ($_POST["lc_destino"] !== "")) {
       $transport_richiesto->from_compound = $_POST["lcx_origine"];
       $transport_richiesto->to_compound = $_POST["lc_destino"];
       $transport_richiesto->lcx_to_lc();
     }
+  }
 }
 ?>
 <?php include(LIB_PATH.DS."htmls".DS."header.php"); ?>
@@ -98,7 +101,7 @@ if (isset($_POST["submit"])) {
       ?> </div>
     </td>
   </tr></table>
-<?php  echo '<pre>'; print_r($_POST); echo '</pre>'; ?>
+  <?php // echo '<pre>'; print_r($_POST); echo '</pre>'; ?>
   </form>
   </div>
   </font>
