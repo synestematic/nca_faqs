@@ -1,5 +1,4 @@
 <?php
-//require_once(LIB_PATH.DS."nca_db.php");
 
 class Branch {
 
@@ -65,13 +64,13 @@ class Branch {
 
 	public static function branches_menu($name) {
 		global $_POST;
-		echo '<select style="width:40%" name="'.$name.'">';
+		echo '<select style="width:50%" name="'.$name.'">';
 		echo "<option>";
 		echo "";
 		echo "</option>";
 		$branches = self::enumerate_branches();
 		foreach ($branches as $branch) {
-			echo ($_POST["tipo_origine"] == "branch" && $branch->filiale == $_POST["branch_origine"]) ? '<option selected>' : '<option>' ;
+			echo ($branch->filiale == $_POST["branch_origine"]) ? '<option selected>' : '<option>' ;
 			echo $branch->filiale;
 			echo "</option>";
 		}

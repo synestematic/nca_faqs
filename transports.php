@@ -1,34 +1,47 @@
 <?php
 require_once("private/initialize.php");
 
-if (isset($_POST["submit"]) && isset($_POST["tipo_origine"]) && isset($_POST["tipo_destino"])) {
 
-  // set new transport with POST variables and use instance methods instead of class methods
+if (isset($_POST["submit"])) {
+
+    $transport_richiesto = new Transport();
 
     //C2M DOMESTIC + branch
-    if ($_POST["tipo_origine"] == "lc" && $_POST["tipo_destino"] == "zip") {
-      $transport_richiesto = Transport::lc_to_zip($_POST["lc_origine"], $_POST["zip_destino"]);
+    if (($_POST["lc_origine"] !== "") && ($_POST["zip_destino"] !== "")) {
+      $transport_richiesto->from_compound = $_POST["lc_origine"];
+      $transport_richiesto->to_zip = $_POST["zip_destino"];
+      $transport_richiesto->lc_to_zip();
     }
-    if ($_POST["tipo_origine"] == "branch" && $_POST["tipo_destino"] == "zip") {
-      $transport_richiesto = Transport::branch_to_zip($_POST["branch_origine"], $_POST["zip_destino"]);
+    if (($_POST["branch_origine"] !== "") && ($_POST["zip_destino"] !== "")) {
+      $transport_richiesto->from_branch = $_POST["branch_origine"];
+      $transport_richiesto->to_zip = $_POST["zip_destino"];
+      $transport_richiesto->branch_to_zip();
     }
 
     //C2C DOMESTIC + branch
-    if ($_POST["tipo_origine"] == "lc" && $_POST["tipo_destino"] == "lc") {
-      $transport_richiesto = Transport::lc_to_lc($_POST["lc_origine"], $_POST["lc_destino"]);
+    if (($_POST["lc_origine"] !== "") && ($_POST["lc_destino"] !== "")) {
+      $transport_richiesto->from_compound = $_POST["lc_origine"];
+      $transport_richiesto->to_compound = $_POST["lc_destino"];
+      $transport_richiesto->lc_to_lc();
     }
-    if ($_POST["tipo_origine"] == "branch" && $_POST["tipo_destino"] == "lc") {
-      $transport_richiesto = Transport::branch_to_lc($_POST["branch_origine"], $_POST["lc_destino"]);
+    if (($_POST["branch_origine"] !== "") && ($_POST["lc_destino"] !== "")) {
+      $transport_richiesto->from_branch = $_POST["branch_origine"];
+      $transport_richiesto->to_compound = $_POST["lc_destino"];
+      $transport_richiesto->branch_to_lc();
     }
 
     //C2M INTL
-    if ($_POST["tipo_origine"] == "lcx" && $_POST["tipo_destino"] == "zip") {
-      $transport_richiesto = Transport::lcx_to_zip($_POST["lcx_origine"], $_POST["zip_destino"]);
+    if (($_POST["lcx_origine"] !== "") && ($_POST["zip_destino"] !== "")) {
+      $transport_richiesto->from_compound = $_POST["lcx_origine"];
+      $transport_richiesto->to_zip = $_POST["zip_destino"];
+      $transport_richiesto->lcx_to_zip();
     }
 
     //C2C INTL
-    if ($_POST["tipo_origine"] == "lcx" && $_POST["tipo_destino"] == "lc") {
-      $transport_richiesto = Transport::lcx_to_lc($_POST["lcx_origine"], $_POST["lc_destino"]);
+    if (($_POST["lcx_origine"] !== "") && ($_POST["lc_destino"] !== "")) {
+      $transport_richiesto->from_compound = $_POST["lcx_origine"];
+      $transport_richiesto->to_compound = $_POST["lc_destino"];
+      $transport_richiesto->lcx_to_lc();
     }
 }
 ?>
@@ -40,19 +53,19 @@ if (isset($_POST["submit"]) && isset($_POST["tipo_origine"]) && isset($_POST["ti
 	 <table id="transport_table">
 		<tr>
 		 <td align="center" style="width:50px">ORIGINE:</td>
-     <td style="width:300px" align="right">Filiale in Italia<input type="radio" name="tipo_origine" value="branch" <?php echo (isset($_POST["tipo_origine"]) && $_POST["tipo_origine"] == "branch") ? 'checked' : '' ; ?> ></td>
+     <td style="width:300px" align="right">Filiale in Italia</td>
 		 <td style="width:300px" align="right"><?php Branch::branches_menu("branch_origine"); ?></td>
      </tr>
      <tr>
        <td></td>
-		 <td align="right">Centro di Stoccaggio in Italia<input type="radio" name="tipo_origine" value="lc" <?php echo (isset($_POST["tipo_origine"]) && $_POST["tipo_origine"] == "lc") ? 'checked' : '' ; ?> ></td>
+		 <td align="right">Centro di Stoccaggio in Italia</td>
 		 <td align="right">
-			 <?php Transport::lcs_menu("lc_origine", "tipo_origine"); ?>
+			 <?php Transport::lcs_menu("lc_origine"); ?>
 		 </td>
 	   </tr>
      <tr>
        <td></td>
-		 <td align="right">Centro di Stoccaggio all'Estero<input type="radio" name="tipo_origine" value="lcx" <?php echo (isset($_POST["tipo_origine"]) && $_POST["tipo_origine"] == "lcx") ? 'checked' : '' ; ?> ></td>
+		 <td align="right">Centro di Stoccaggio all'Estero</td>
 		 <td align="right">
 			 <?php Transport::lcxs_menu("lcx_origine"); ?>
 		 </td>
@@ -62,15 +75,15 @@ if (isset($_POST["submit"]) && isset($_POST["tipo_origine"]) && isset($_POST["ti
    </tr>
 	 	<tr>
 			<td align="center">DESTINAZIONE:</td>
-		 	<td align="right"> Centro di Stoccaggio in Italia<input type="radio" name="tipo_destino" value="lc" <?php echo (isset($_POST["tipo_destino"]) && $_POST["tipo_destino"] == "lc") ? 'checked' : '' ; ?>></td>
+		 	<td align="right"> Centro di Stoccaggio in Italia</td>
 		 	<td align="left">
-        <?php Transport::lcs_menu("lc_destino", "tipo_destino"); ?>
+        <?php Transport::lcs_menu("lc_destino"); ?>
 		 	</td>
 	 	</tr>
 		<tr>
 		 <td>
 		 </td>
-		 <td align="right"> Codice Postale (prime due cifre)<input type="radio" name="tipo_destino" value="zip" <?php echo (isset($_POST["tipo_destino"]) && $_POST["tipo_destino"] == "zip") ? 'checked' : '' ; ?>></td>
+		 <td align="right"> Codice Postale (prime due cifre)</td>
 		 <td align="left">
        <?php Transport::zips_menu("zip_destino"); ?>
 		 </td>
@@ -85,6 +98,7 @@ if (isset($_POST["submit"]) && isset($_POST["tipo_origine"]) && isset($_POST["ti
       ?> </div>
     </td>
   </tr></table>
+<?php  echo '<pre>'; print_r($_POST); echo '</pre>'; ?>
   </form>
   </div>
   </font>

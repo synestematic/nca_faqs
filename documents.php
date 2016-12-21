@@ -1,6 +1,5 @@
 <?php
 require_once("private/initialize.php");
-// echo '<pre>'; print_r($_POST); echo '</pre>';
 
 if (isset($_POST["submit"])) {
   $requested_stock_id = $_POST["stock_id"];

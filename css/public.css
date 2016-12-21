@@ -68,7 +68,7 @@ table {
     width: 100%;
 }
 #transport_table td, #transport_table th {
-    border: 0px solid #000000;
+    border: 1px solid #000000;
   	/*width:150px;*/
 		height:25px;
     padding: 1px;

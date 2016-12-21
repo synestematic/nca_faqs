@@ -1,12 +1,11 @@
 <?php
-
 class Transport {
 
 	public $from_branch = "";
 	public $from_compound = "";
 	public $to_compound = "";
 	public $to_zip = "";
-	public $price = "-";
+	public $price = "asd";
 
 	private static function instantiate($result) {
 		$object = new self;
@@ -37,13 +36,10 @@ class Transport {
 		return self::find_by_sql("SELECT * FROM c2c_dom");
 	}
 
-	public static function check_for_same_lc($origine, $destino) {
-		if ($origine == $destino) {
-			return new self;
-		} else {
-			return false;
-		}
+	public function check_for_same_lc() {
+		return ($this->from_compound == $this->to_compound) ? true : false ;
 	}
+
 	public static function check_for_blank($origine, $destino) {
 		if ($origine == "" || $destino == "") {
 			return new self;
@@ -52,90 +48,79 @@ class Transport {
 		}
 	}
 
-	public static function lc_to_lc($from="", $to="") {
-		$blank = self::check_for_blank($from, $to);
-		if (empty($blank)) {
-				$check_same_lc = self::check_for_same_lc($from, $to);
-				if (empty($check_same_lc)) {
-					$sql = "SELECT * FROM c2c_dom WHERE `From compound` = '$from' AND `To compound` = '$to' LIMIT 1";
+	public function lc_to_lc() {
+				$check_same_lc = $this->check_for_same_lc();
+				if ($check_same_lc == false ) {
+					$sql = "SELECT * FROM c2c_dom WHERE `From compound` = '$this->from_compound' AND `To compound` = '$this->to_compound' LIMIT 1";
 					$result_array = self::find_by_sql($sql);
-					return !empty($result_array) ? array_shift($result_array) : false ;
+					$result = !empty($result_array) ? array_shift($result_array) : false ;
+					$this->price = $result->price;
 				} else {
-					return $check_same_lc;
+					$this->price = " - ";
 				}
-			} else { return $blank; }
 	}
 
-	public static function lcx_to_lc($lcx, $lc) {
-			$blank = self::check_for_blank($lcx, $lc);
- 			if (empty($blank)) {
-			if ($lc == "Logistikzentrum Lucernate di Rho" || $lc == "Logistikzentrum Verona") {
-				$sql = "SELECT * FROM c2c_intl WHERE `From compound` = '$lcx' AND `To compound` = '$lc' LIMIT 1";
+	public function lcx_to_lc() {
+			if ($this->to_compound == "Logistikzentrum Lucernate di Rho" || $this->to_compound == "Logistikzentrum Verona") {
+				$sql = "SELECT * FROM c2c_intl WHERE `From compound` = '$this->from_compound' AND `To compound` = '$this->to_compound' LIMIT 1";
 				$result_array = self::find_by_sql($sql);
-				return !empty($result_array) ? array_shift($result_array) : false ;
+				$result = !empty($result_array) ? array_shift($result_array) : false ;
+				$this->price = $result->price;
+
 			} else {
-				$sql = "SELECT * FROM c2c_intl WHERE `From compound` = '$lcx' AND `To compound` = 'Logistikzentrum Lucernate di Rho' LIMIT 1";
+
+				$sql = "SELECT * FROM c2c_intl WHERE `From compound` = '$this->from_compound' AND `To compound` = 'Logistikzentrum Lucernate di Rho' LIMIT 1";
 				$result_array = self::find_by_sql($sql);
 				$tratto1 = !empty($result_array) ? array_shift($result_array) : false ;
-				$tratto2 = self::lc_to_lc("Logistikzentrum Lucernate di Rho", $lc);
-				$tratto1->price = ($tratto1->price + $tratto2->price);
-				$tratto1->to_compound = $tratto2->to_compound;
-				return $tratto1;
+
+				$tratto2 = new self;
+				$tratto2->from_compound = "Logistikzentrum Lucernate di Rho";
+				$tratto2->to_compound = $this->to_compound;
+				$tratto2->lc_to_lc();
+
+				$this->price = $tratto1->price + $tratto2->price;
+
 			}
-		} else { return $blank; }
 	}
 
-	public static function lc_to_zip($from="", $to="") {
-		$blank = self::check_for_blank($from, $to);
-		if (empty($blank)) {
-			$sql = "SELECT * FROM c2m_dom WHERE `From compound` = '$from' AND `To zip code region` = '$to' LIMIT 1";
+	public function lc_to_zip() {
+			$sql = "SELECT * FROM c2m_dom WHERE `From compound` = '$this->from_compound' AND `To zip code region` = '$this->to_zip' LIMIT 1";
 			$result_array = self::find_by_sql($sql);
-			return !empty($result_array) ? array_shift($result_array) : false ;
-		} else { return $blank; }
+			$result = !empty($result_array) ? array_shift($result_array) : false ;
+			$this->price = $result->price;
 	}
 
-	public static function lcx_to_zip($from="", $to="") {
-		$blank = self::check_for_blank($from, $to);
-		if (empty($blank)) {
-			$sql = "SELECT * FROM c2m_intl WHERE `From compound` = '$from' AND `To zip code region` = '$to' LIMIT 1";
+	public function lcx_to_zip() {
+			$sql = "SELECT * FROM c2m_intl WHERE `From compound` = '$this->from_compound' AND `To zip code region` = '$this->to_zip' LIMIT 1";
 			$result_array = self::find_by_sql($sql);
-			return !empty($result_array) ? array_shift($result_array) : false ;
-		} else { return $blank; }
+			$result = !empty($result_array) ? array_shift($result_array) : false ;
+			$this->price = $result->price;
 	}
 
-	public static function branch_to_lc($filiale="", $lc="") {
-		$blank = self::check_for_blank($filiale, $lc);
-		if (empty($blank)) {
-			$branch_inserita = Branch::find_by_filiale($filiale);
-			$result = self::lc_to_lc($branch_inserita->lc_associato, $lc);
-			$result->from_branch = $filiale;
-			return $result;
-		} else { return $blank; }
-
+	public function branch_to_lc() {
+			$branch_inserita = Branch::find_by_filiale($this->from_branch);
+			$this->from_compound = $branch_inserita->lc_associato;
+			$this->lc_to_lc();
 	}
 
-	public static function branch_to_zip($filiale="", $zip="") {
-		$blank = self::check_for_blank($filiale, $zip);
-		if (empty($blank)) {
-			$branch_inserita = Branch::find_by_filiale($filiale);
-			$result = self::lc_to_zip($branch_inserita->lc_associato, $zip);
-			$result->from_branch = $filiale;
-			return $result;
-		} else { return $blank; }
+	public function branch_to_zip() {
+			$branch_inserita = Branch::find_by_filiale($this->from_branch);
+			$this->from_compound = $branch_inserita->lc_associato;
+			$this->lc_to_zip();
 	}
 
 	public static function enumerate_lcs() {
 		return self::find_by_sql("SELECT DISTINCT `From compound` FROM c2c_dom ORDER BY `From compound` ASC");
 	}
-	public static function lcs_menu($name, $tipo) {
+	public static function lcs_menu($name) {
 		global $_POST;
-		echo '<select  style="width:50%" name="'.$name.'">';
+		echo '<select  style="width:70%" name="'.$name.'">';
 		echo "<option selected>";
 		echo "";
 		echo "</option>";
 		$lcs = self::enumerate_lcs();
 		foreach ($lcs as $lc) {
-			echo ($_POST["$tipo"] == "lc" && $lc->from_compound == $_POST["$name"]) ? '<option selected>' : '<option>' ;
+			echo ($lc->from_compound == $_POST["$name"]) ? '<option selected>' : '<option>' ;
 			echo $lc->from_compound;
 			echo "</option>";
 		}
@@ -154,7 +139,7 @@ class Transport {
 		echo "</option>";
 		$lcxs = self::enumerate_lcxs();
 		foreach ($lcxs as $lcx) {
-			echo ($_POST["tipo_origine"] == "lcx" && $lcx->from_compound == $_POST["$name"]) ? '<option selected>' : '<option>' ;
+			echo ($lcx->from_compound == $_POST["$name"]) ? '<option selected>' : '<option>' ;
 			echo $lcx->from_compound;
 			echo "</option>";
 		}
@@ -167,14 +152,14 @@ class Transport {
 	}
 	public static function zips_menu($name) {
 		global $_POST;
-		echo '<select style="width:35%" name="'.$name.'">';
+		echo '<select style="width:50%" name="'.$name.'">';
 		echo "<option selected>";
 		echo "";
 		echo "</option>";
  		//mancano i zip: 49 68 69 77 78 79
 		$zips = self::enumerate_zips();
 		foreach ($zips as $zip) {
-			echo ($_POST["tipo_destino"] == "zip" && $zip->to_zip == $_POST["$name"]) ? '<option selected>' : '<option>' ;
+			echo ($zip->to_zip == $_POST["$name"]) ? '<option selected>' : '<option>' ;
 			echo $zip->to_zip;
 			echo "</option>";
 		}
