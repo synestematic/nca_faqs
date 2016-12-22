@@ -48,9 +48,11 @@ class Veicolo {
 	}
 
 	public static function find_by_stock_id($stock_id=1) {
-//		$sql = 'SELECT * FROM `report veicoli in stock e conclusi da meno di 31gg` WHERE StockId = "';
+		global $fp_db;
+		$fp_db->open_connection();
 		$sql = 'SELECT * FROM `warm_vehicles` WHERE StockId = "';
-		$sql .= $stock_id;
+		$sql .= $fp_db->escape_string($stock_id);
+		//$sql .= $stock_id;
 		$sql .= '" LIMIT 1';
 		$result = self::find_by_sql($sql);
 		return !empty($result) ? array_shift($result) : false ;

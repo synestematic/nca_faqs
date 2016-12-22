@@ -1,6 +1,4 @@
 <?php
-//require_once(LIB_PATH.DS."nca_db.php");
-
 class Lc {
 
 	public $id;
@@ -28,12 +26,20 @@ class Lc {
 	}
 
 	public static function find_by_id($id=1) {
-		$result = self::find_by_sql("SELECT * FROM lcs WHERE id = {$id} LIMIT 1");
+		global $nca_db;
+		$sql = 'SELECT * FROM lcs WHERE id = "';
+		$sql .= $nca_db->escape_string($id);
+		$sql .= '" LIMIT 1';
+		$result = self::find_by_sql($sql);
 		return !empty($result) ? array_shift($result) : false ;
 	}
 
 	public static function find_by_centro($centro='') {
-		$result = self::find_by_sql("SELECT * FROM lcs WHERE centro = '{$centro}' LIMIT 1");
+		global $nca_db;
+		$sql = 'SELECT * FROM lcs WHERE centro = "';
+		$sql .= $nca_db->escape_string($centro);
+		$sql .= '" LIMIT 1';
+		$result = self::find_by_sql($sql);
 		return !empty($result) ? array_shift($result) : false ;
 	}
 

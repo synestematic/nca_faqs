@@ -1,5 +1,4 @@
 <?php
-
 class Branch {
 
 	public $id;
@@ -30,7 +29,6 @@ class Branch {
 		$result_set = $nca_db->query($sql);
 		$object_array = array();
 		while ($result = mysqli_fetch_assoc($result_set)) {
-			//make an instance for every result
 			$object_array[] = self::instantiate($result);
 		}
 		return $object_array;
@@ -41,21 +39,21 @@ class Branch {
 	}
 
 	public static function find_by_id($id=1) {
-		$result = self::find_by_sql("SELECT * FROM branches WHERE id = {$id};");
+		global $nca_db;
+		$sql = 'SELECT * FROM branches WHERE id = "';
+		$sql .= $nca_db->escape_string($id);
+		$sql .= '" LIMIT 1';
+		$result = self::find_by_sql($sql);
 		return !empty($result) ? array_shift($result) : false ;
 	}
 
 	public static function find_by_filiale($filiale='') {
-		$result = self::find_by_sql("SELECT * FROM branches WHERE filiale = '{$filiale}' LIMIT 1");
+		global $nca_db;
+		$sql = 'SELECT * FROM branches WHERE filiale = "';
+		$sql .= $nca_db->escape_string($filiale);
+		$sql .= '" LIMIT 1';
+		$result = self::find_by_sql($sql);
 		return !empty($result) ? array_shift($result) : false ;
-	}
-
-	public static function find_by_nb_number($nb_number='') {
-		return self::find_by_sql("SELECT * FROM branches WHERE nb_number = '{$nb_number}'");
-	}
-
-	public static function find_by_nb_number2($nb_number='') {
-		return self::find_by_sql("SELECT * FROM branches WHERE nb_number LIKE '%$nb_number%'");
 	}
 
 	public static function enumerate_branches() {
@@ -75,9 +73,7 @@ class Branch {
 			echo "</option>";
 		}
 		echo "</select>";
-//		mysqli_free_result($field_set);
 	}
-
 
 }
 

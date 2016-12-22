@@ -9,7 +9,7 @@ if (isset($_POST["submit"])) {
        ( ($_POST["branch_origine"] !== "") && ($_POST["lc_origine"] !== "") ) ||
        ( ($_POST["lcx_origine"] !== "") && ($_POST["lc_origine"] !== "") ) ||
        ( ($_POST["lc_destino"] !== "") && ($_POST["zip_destino"] !== "") )
-     ) { $transport_richiesto->price = "--"; }
+     ) { $transport_richiesto->price = ""; }
   else {
     //C2M DOMESTIC + branch
     if (($_POST["lc_origine"] !== "") && ($_POST["zip_destino"] !== "")) {
@@ -95,10 +95,10 @@ if (isset($_POST["submit"])) {
   <table id="transport_table"><tr>
     <td style="width:50px"><input type="submit" name="submit" value="Calcola" /></td>
     <td style="width:300px" align="right"> <div id="prezzo_di_spedizione"><i>Prezzo di Spedizione = </i></div></td>
-    <td style="width:300px" align="left"><div id="prezzo">
+    <td style="width:300px" align="left"><div id="prezzo"><i>€
       <?php
-        echo (empty($transport_richiesto)) ? '' : '<i>€ '.$transport_richiesto->price.'</i>';
-      ?> </div>
+        echo (empty($transport_richiesto)) ? '' : $transport_richiesto->price;
+      ?></i></div>
     </td>
   </tr></table>
   <?php // echo '<pre>'; print_r($_POST); echo '</pre>'; ?>

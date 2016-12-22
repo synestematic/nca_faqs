@@ -1,6 +1,6 @@
 <?php
 class Transport {
-
+// Haven't done any escaping on this class SQL values as they are not directly input by users but are chosen from select html object
 	public $from_branch = "";
 	public $from_compound = "";
 	public $to_compound = "";
