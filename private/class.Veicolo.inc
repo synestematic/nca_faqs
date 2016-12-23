@@ -59,32 +59,32 @@ class Veicolo {
 	}
 
 	public function acipra_vs_acipracs() {
-		$result = ($this->aci_pra !== "FALSE" || $this->aci_pracs !== "FALSE") ? "Ricevuto" : "Non Ricevuto" ;
+		$result = ($this->aci_pra !== "FALSE" || $this->aci_pracs !== "FALSE") ? '<div id="got">Ricevuto</div>' : '<div id="not">Non Ricevuto</div>' ;
 		echo $result;
 	}
 
 	public function tt2120_vs_tt2120cs() {
-		$result = ($this->tt2120 !== "FALSE" || $this->tt2120cs !== "FALSE") ? "Ricevuto" : "Non Ricevuto" ;
+		$result = ($this->tt2120 !== "FALSE" || $this->tt2120cs !== "FALSE") ? '<div id="got">Ricevuto</div>' : '<div id="not">Non Ricevuto</div>' ;
 		echo $result;
 	}
 
-	public function check_contratto() {
-		$result = ($this->contratto !== "FALSE") ? "Ricevuto" : "Non Ricevuto" ;
-		echo $result;
-	}
+	// public function check_contratto() {
+	// 	$result = ($this->contratto !== "FALSE") ? '<div id="got">Ricevuto</div>' : '<div id="not">Non Ricevuto</div>' ;
+	// 	echo $result;
+	// }
 
 	public function check_cciaa() {
-		$result = ($this->cciaa !== "FALSE") ? "Ricevuto" : "Non Ricevuto" ;
+		$result = ($this->cciaa !== "FALSE") ? '<div id="got">Ricevuto</div>' : '<div id="not">Non Ricevuto</div>' ;
 		echo $result;
 	}
 
 	public function check_privacy() {
-		$result = ($this->privacy !== "FALSE") ? "Ricevuto" : "Non Ricevuto" ;
+		$result = ($this->privacy !== "FALSE") ? '<div id="got">Ricevuto</div>' : '<div id="not">Non Ricevuto</div>' ;
 		echo $result;
 	}
 
 	public function check_doc_rico() {
-		$result = ($this->doc_rico !== "FALSE") ? "Ricevuto" : "Non Ricevuto" ;
+		$result = ($this->doc_rico !== "FALSE") ? '<div id="got">Ricevuto</div>' : '<div id="not">Non Ricevuto</div>' ;
 		echo $result;
 	}
 

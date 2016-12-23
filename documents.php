@@ -3,19 +3,31 @@ require_once("private/initialize.php");
 
 if (isset($_POST["submit"])) {
   $requested_stock_id = $_POST["stock_id"];
-  $veicolo_richiesto = Veicolo::find_by_stock_id($requested_stock_id);
-  if (empty($veicolo_richiesto)) {
-    $veicolo_richiesto = new Veicolo();
+  $ab = substr($requested_stock_id ,0,2);
+  $num = substr($requested_stock_id ,2,5);
+
+  if ( strlen($requested_stock_id) !== 7 || !ctype_alpha($ab) || !is_numeric($num)) {
+    echo '<script>';
+    echo 'alert("Attenzione! Lo StockID dev\'essere composto da 2 lettere iniziali seguite da 5 numeri.");';
+    echo '</script>';
+  } else {
+    $veicolo_richiesto = Veicolo::find_by_stock_id($requested_stock_id);
+    if (empty($veicolo_richiesto)) {
+      $veicolo_richiesto = new Veicolo();
+      echo '<script>';
+      echo 'alert("Lo StockID non e\' presente nel nostro database.");';
+      echo '</script>';
+    }
   }
+
 }
 ?>
-
 <?php include(LIB_PATH.DS."htmls".DS."header.php"); ?>
  <body>
   <div id="documents_div">
     <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
       Stock ID
-      <input type="text" name="stock_id" value="<?php echo (isset($veicolo_richiesto)) ? "$requested_stock_id" : "" ; ?>" />
+      <input type="text" name="stock_id" value="<?php echo (isset($requested_stock_id)) ? "$requested_stock_id" : "" ; ?>" />
       <input type="submit" name="submit" value="Cerca" />
     </form><br>
     <table id="documents_table">

@@ -8,8 +8,15 @@ if (isset($_POST["submit"])) {
   if ( ( ($_POST["branch_origine"] !== "") && ($_POST["lcx_origine"] !== "") ) ||
        ( ($_POST["branch_origine"] !== "") && ($_POST["lc_origine"] !== "") ) ||
        ( ($_POST["lcx_origine"] !== "") && ($_POST["lc_origine"] !== "") ) ||
-       ( ($_POST["lc_destino"] !== "") && ($_POST["zip_destino"] !== "") )
-     ) { $transport_richiesto->price = ""; }
+       ( ($_POST["lc_destino"] !== "") && ($_POST["zip_destino"] !== "") ) ||
+       ( ($_POST["branch_origine"] == "") && ($_POST["lc_origine"] == "") && ($_POST["lcx_origine"] == "") ) ||
+       ( ($_POST["lc_destino"] == "") && ($_POST["zip_destino"] == "") )
+     ) {
+    $transport_richiesto->price = "";
+    echo '<script>';
+    echo 'alert("Attenzione! Scegliere 1 Origine e 1 Destinazione.");';
+    echo '</script>';
+  }
   else {
     //C2M DOMESTIC + branch
     if (($_POST["lc_origine"] !== "") && ($_POST["zip_destino"] !== "")) {
@@ -55,12 +62,12 @@ if (isset($_POST["submit"])) {
     <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
 	 <table id="transport_table">
 		<tr>
-		 <td align="center" style="width:50px">ORIGINE:</td>
+		 <td style="width:50px"></td>
      <td style="width:300px" align="right">Filiale in Italia</td>
 		 <td style="width:300px" align="right"><?php Branch::branches_menu("branch_origine"); ?></td>
      </tr>
      <tr>
-       <td></td>
+      <td style="width:50px"><div id="oridest">ORIGINE:</div></td>
 		 <td align="right">Centro di Stoccaggio in Italia</td>
 		 <td align="right">
 			 <?php Transport::lcs_menu("lc_origine"); ?>
@@ -77,7 +84,7 @@ if (isset($_POST["submit"])) {
      <td>&nbsp</td><td></td><td></td>
    </tr>
 	 	<tr>
-			<td align="center">DESTINAZIONE:</td>
+			<td><div id="oridest">DESTINAZIONE:</div></td>
 		 	<td align="right"> Centro di Stoccaggio in Italia</td>
 		 	<td align="left">
         <?php Transport::lcs_menu("lc_destino"); ?>
