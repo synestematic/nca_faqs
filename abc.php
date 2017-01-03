@@ -1,20 +1,11 @@
 <?php
 require_once("private/initialize.php");
 
-//echo Database::escape_string("It's Trivia Time");
-echo $local_db->escape_string("It's Trivia Time");
+// you can treat string characters as if they were array keys....
+$foo = "1b3";
+echo $foo[1]; // displays b
 echo '<br>';
-$foo = Branch::find_by_id("9");
-echo $foo->filiale;
-echo '<br>';
-$foo = Branch::find_by_filiale("Ancona");
-echo $foo->id;
-echo '<br>';
-$foo = Lc::find_by_id("5");
-echo $foo->centro;
-echo '<br>';
-$foo = Lc::find_by_centro("Logistikzentrum Ostia Antic");
-echo $foo->id;
-echo '<br>';
+$foo[0] = 'a'; // inserts a in frist place
+echo $foo; // displays ab3
 
 ?>

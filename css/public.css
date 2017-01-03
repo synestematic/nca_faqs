@@ -93,6 +93,8 @@ table {
 }
 
 #documents_div {
+  /*height:250px;*/
+	/*border: 2px solid #000000;*/
   width: 100%;
 }
 #documents_table {

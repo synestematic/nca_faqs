@@ -15,10 +15,10 @@ require_once("private/initialize.php");
      <br><br><br><br><br><br><br>
    <div id="main">
      <h1><i>- Quali sono i costi di spedizione della mia macchina?</i></h1><br>
-     <div id="answer"> Puoi calcolare i costi di spedizione dell'autovettura acquistata in base all'origine e destinazione della stessa.</div><br>
+     <div id="answer"> Puoi calcolare i costi di spedizione in base al punto di partenza e di arrivo dell'autovettura acquistata:</div><br>
      <iframe src="transports.php" frameborder="0" height="300px" width="800px"></iframe><hr>
      <h1><i>- Qual è lo stato della documentazione richiesta ?</i></h1><br>
-     <div id="answer">Puoi eseguire una ricerca con lo StockID della tua vettura per controllare se abbiamo ricevuto i documenti necessari al completamento della pratica:</div><br>
+     <div id="answer">Puoi eseguire una ricerca con lo Stock ID della tua vettura per controllare se abbiamo ricevuto i documenti necessari al completamento della pratica:</div><br>
      <iframe src="documents.php" frameborder="0" height="200px" width="800px"></iframe>
    </div>
    <div id="footer">

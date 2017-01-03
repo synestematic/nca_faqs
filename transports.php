@@ -12,10 +12,7 @@ if (isset($_POST["submit"])) {
        ( ($_POST["branch_origine"] == "") && ($_POST["lc_origine"] == "") && ($_POST["lcx_origine"] == "") ) ||
        ( ($_POST["lc_destino"] == "") && ($_POST["zip_destino"] == "") )
      ) {
-    $transport_richiesto->price = "";
-    echo '<script>';
-    echo 'alert("Attenzione! Scegliere 1 Origine e 1 Destinazione.");';
-    echo '</script>';
+    // $transport_richiesto->price = "";
   }
   else {
     //C2M DOMESTIC + branch
@@ -67,7 +64,7 @@ if (isset($_POST["submit"])) {
 		 <td style="width:300px" align="right"><?php Branch::branches_menu("branch_origine"); ?></td>
      </tr>
      <tr>
-      <td style="width:50px"><div id="oridest">ORIGINE:</div></td>
+      <td style="width:50px"><div id="oridest">PARTENZA:</div></td>
 		 <td align="right">Centro di Stoccaggio in Italia</td>
 		 <td align="right">
 			 <?php Transport::lcs_menu("lc_origine"); ?>
@@ -84,7 +81,7 @@ if (isset($_POST["submit"])) {
      <td>&nbsp</td><td></td><td></td>
    </tr>
 	 	<tr>
-			<td><div id="oridest">DESTINAZIONE:</div></td>
+			<td><div id="oridest">ARRIVO:</div></td>
 		 	<td align="right"> Centro di Stoccaggio in Italia</td>
 		 	<td align="left">
         <?php Transport::lcs_menu("lc_destino"); ?>
@@ -112,5 +109,16 @@ if (isset($_POST["submit"])) {
   </form>
   </div>
   </font>
+  <?php
+  if (isset($_POST["submit"])) {
+    if ( ( ($_POST["branch_origine"] !== "") && ($_POST["lcx_origine"] !== "") ) ||
+         ( ($_POST["branch_origine"] !== "") && ($_POST["lc_origine"] !== "") ) ||
+         ( ($_POST["lcx_origine"] !== "") && ($_POST["lc_origine"] !== "") ) ||
+         ( ($_POST["lc_destino"] !== "") && ($_POST["zip_destino"] !== "") ) ||
+         ( ($_POST["branch_origine"] == "") && ($_POST["lc_origine"] == "") && ($_POST["lcx_origine"] == "") ) ||
+         ( ($_POST["lc_destino"] == "") && ($_POST["zip_destino"] == "") )
+       ) { echo '<script src="js/transports.alert.js"></script>'; }
+  }
+  ?>
  </body>
  <?php include(LIB_PATH.DS."htmls".DS."footer.php"); ?>
