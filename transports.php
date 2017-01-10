@@ -54,26 +54,25 @@ if (isset($_POST["submit"])) {
 ?>
 <?php include(LIB_PATH.DS."htmls".DS."header.php"); ?>
  <body>
-   <basefont face="Verdana" size="">
   <div id="transport_div">
     <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
 	 <table id="transport_table">
 		<tr>
 		 <td style="width:50px"></td>
-     <td style="width:300px" align="right">Filiale in Italia</td>
-		 <td style="width:300px" align="right"><?php Branch::branches_menu("branch_origine"); ?></td>
+       <td style="width:300px" align="right">Filiale in Italia</td>
+		 <td style="width:300px" align="center"><?php Branch::branches_menu("branch_origine"); ?></td>
      </tr>
      <tr>
       <td style="width:50px"><div id="oridest">PARTENZA:</div></td>
 		 <td align="right">Centro di Stoccaggio in Italia</td>
-		 <td align="right">
+		 <td align="center">
 			 <?php Transport::lcs_menu("lc_origine"); ?>
 		 </td>
 	   </tr>
      <tr>
        <td></td>
 		 <td align="right">Centro di Stoccaggio all'Estero</td>
-		 <td align="right">
+		 <td align="center">
 			 <?php Transport::lcxs_menu("lcx_origine"); ?>
 		 </td>
 	   </tr>
@@ -83,7 +82,7 @@ if (isset($_POST["submit"])) {
 	 	<tr>
 			<td><div id="oridest">ARRIVO:</div></td>
 		 	<td align="right"> Centro di Stoccaggio in Italia</td>
-		 	<td align="left">
+		 	<td align="center">
         <?php Transport::lcs_menu("lc_destino"); ?>
 		 	</td>
 	 	</tr>
@@ -91,7 +90,7 @@ if (isset($_POST["submit"])) {
 		 <td>
 		 </td>
 		 <td align="right"> Codice Postale (prime due cifre)</td>
-		 <td align="left">
+		 <td align="center">
        <?php Transport::zips_menu("zip_destino"); ?>
 		 </td>
 	 	</tr>
@@ -104,11 +103,10 @@ if (isset($_POST["submit"])) {
         echo (empty($transport_richiesto)) ? '' : $transport_richiesto->price;
       ?></i></div>
     </td>
-  </tr></table>
+</tr></table><br>
   <?php // echo '<pre>'; print_r($_POST); echo '</pre>'; ?>
   </form>
   </div>
-  </font>
   <?php
   if (isset($_POST["submit"])) {
     if ( ( ($_POST["branch_origine"] !== "") && ($_POST["lcx_origine"] !== "") ) ||
@@ -120,5 +118,6 @@ if (isset($_POST["submit"])) {
        ) { echo '<script src="js/transports.alert.js"></script>'; }
   }
   ?>
+  <script src="js/transports.js"></script>
  </body>
  <?php include(LIB_PATH.DS."htmls".DS."footer.php"); ?>

@@ -1,8 +1,16 @@
 <?php ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
    "http://www.w3.org/TR/html4/loose.dtd">
-<html lang="it">
+<html lang="it" class="no-js">
+
  <head>
-  <title>Auto1.com - FAQ Merchants</title>
-  <link href="css/public.css" media="all" rel="stylesheet" type="text/css" />
+ 	<meta charset="UTF-8">
+ 	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+ 	<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,800' rel='stylesheet' type='text/css'>
+   <!-- <link rel="stylesheet" href="css/public.css" media="all" type="text/css" /> -->
+ 	<link rel="stylesheet" href="css/reset.css"> <!-- CSS reset -->
+ 	<link rel="stylesheet" href="css/style.css"> <!-- Resource style -->
+ 	<script src="js/modernizr.js"></script> <!-- Modernizr -->
+ 	<title>FAQ Merchants | Auto1.com</title>
  </head>

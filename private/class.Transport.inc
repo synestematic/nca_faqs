@@ -114,7 +114,12 @@ class Transport {
 	}
 	public static function lcs_menu($name) {
 		global $_POST;
-		echo '<select  style="width:80%" name="'.$name.'">';
+		if ($name === "lc_origine") {
+			echo '<select id="lc_select" onchange="reset13();" style="width:80%" name="'.$name.'">';
+		}
+		if ($name === "lc_destino") {
+			echo '<select id="lc_selector" onchange="reset5();" style="width:80%" name="'.$name.'">';
+		}
 		echo "<option selected>";
 		echo "";
 		echo "</option>";
@@ -133,7 +138,7 @@ class Transport {
 	}
 	public static function lcxs_menu($name) {
 		global $_POST;
-		echo '<select style="width:80%" name="'.$name.'">';
+		echo '<select id="lcx_select" onchange="reset12();" style="width:80%" name="'.$name.'">';
 		echo "<option selected>";
 		echo "";
 		echo "</option>";
@@ -152,7 +157,7 @@ class Transport {
 	}
 	public static function zips_menu($name) {
 		global $_POST;
-		echo '<select style="width:50%" name="'.$name.'">';
+		echo '<select id="zip_select" onchange="reset4();" style="width:80%" name="'.$name.'">';
 		echo "<option selected>";
 		echo "";
 		echo "</option>";

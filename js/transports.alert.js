@@ -1,1 +1,1 @@
-alert("Attenzione! Scegliere 1 punto di Partenza e 1 punto di Arrivo.");
+alert("Attenzione! Selezionare 1 punto di partenza e 1 punto di arrivo.");

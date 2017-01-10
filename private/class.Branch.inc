@@ -62,7 +62,7 @@ class Branch {
 
 	public static function branches_menu($name) {
 		global $_POST;
-		echo '<select style="width:50%" name="'.$name.'">';
+		echo '<select id="branch_select" onchange="reset23();" style="width:80%" name="'.$name.'">';
 		echo "<option>";
 		echo "";
 		echo "</option>";

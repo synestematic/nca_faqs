@@ -12,10 +12,16 @@ class Veicolo {
 	public $privacy ="";
 	public $doc_rico ="";
 
+	public $status ="";
+
+	public $tipo ="";
+	public $data_cdc ="";
+	public $data_incarico ="";
+	public $data_evento ="";
+
 	private static function instantiate($result) {
 		$object = new self;
 		isset($result["Targa"]) ? $object->targa = $result["Targa"] : false ;
-
 		isset($result["StockID"]) ? $object->stock_id = $result["StockID"] : $object->stock_id = "" ;
 
 		isset($result["TT2120"]) ? $object->tt2120 = $result["TT2120"] : false ;
@@ -27,6 +33,28 @@ class Veicolo {
 		isset($result["CCIAA"]) ? $object->cciaa = $result["CCIAA"] : false ;
 		isset($result["Privacy"]) ? $object->privacy = $result["Privacy"] : false ;
 		isset($result["DocRiconoscim"]) ? $object->doc_rico = $result["DocRiconoscim"] : false ;
+
+		isset($result["Tipo"]) ? $object->tipo = $result["Tipo"] : false ;
+		isset($result["DataCdC"]) ? $object->data_cdc = $result["DataCdC"] : false ;
+		isset($result["DataIncarico"]) ? $object->data_incarico = $result["DataIncarico"] : false ;
+		isset($result["Data_Evento"]) ? $object->data_evento = $result["Data_Evento"] : false ;
+
+		if ($object->data_cdc === "" ) { $object->status .= "In attesa dei documenti di circolazione.<br>"; }
+
+		if ($object->data_incarico === "" ) { $object->status .= "In attesa del pagamento dell'auto.<br>"; }
+
+		if ($object->tt2120_vs_tt2120cs() === FALSE || $object->cciaa === "FALSE" || $object->privacy === "FALSE" || $object->doc_rico === "FALSE" ) { $object->status .= "In attesa dei documenti mancanti.<br>"; }
+
+		if ($object->data_evento !== "" ) { $object->status .= "Passaggio di proprietà effettuato in data ". date("F d, Y", strtotime($object->data_evento)) ."."; }
+
+		if ($object->tt2120_vs_tt2120cs() !== FALSE &&
+			$object->cciaa !== "FALSE" &&
+			$object->privacy !== "FALSE" &&
+			$object->doc_rico !== "FALSE" &&
+			$object->data_cdc !== "" &&
+			$object->data_incarico !== "" &&
+			$object->data_evento === "" ) { $object->status = "In lavorazione.";
+		}
 
 		return $object;
 	}
@@ -59,33 +87,11 @@ class Veicolo {
 	}
 
 	public function acipra_vs_acipracs() {
-		$result = ($this->aci_pra !== "FALSE" || $this->aci_pracs !== "FALSE") ? '<div id="got">Ricevuto</div>' : '<div id="not">Non Ricevuto</div>' ;
-		echo $result;
+		return ($this->aci_pra !== "FALSE" || $this->aci_pracs !== "FALSE") ? TRUE : FALSE ;
 	}
 
 	public function tt2120_vs_tt2120cs() {
-		$result = ($this->tt2120 !== "FALSE" || $this->tt2120cs !== "FALSE") ? '<div id="got">Ricevuto</div>' : '<div id="not">Non Ricevuto</div>' ;
-		echo $result;
-	}
-
-	// public function check_contratto() {
-	// 	$result = ($this->contratto !== "FALSE") ? '<div id="got">Ricevuto</div>' : '<div id="not">Non Ricevuto</div>' ;
-	// 	echo $result;
-	// }
-
-	public function check_cciaa() {
-		$result = ($this->cciaa !== "FALSE") ? '<div id="got">Ricevuto</div>' : '<div id="not">Non Ricevuto</div>' ;
-		echo $result;
-	}
-
-	public function check_privacy() {
-		$result = ($this->privacy !== "FALSE") ? '<div id="got">Ricevuto</div>' : '<div id="not">Non Ricevuto</div>' ;
-		echo $result;
-	}
-
-	public function check_doc_rico() {
-		$result = ($this->doc_rico !== "FALSE") ? '<div id="got">Ricevuto</div>' : '<div id="not">Non Ricevuto</div>' ;
-		echo $result;
+		return ($this->tt2120 !== "FALSE" || $this->tt2120cs !== "FALSE") ? TRUE : FALSE ;
 	}
 
 }
