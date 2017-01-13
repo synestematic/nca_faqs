@@ -23,7 +23,10 @@ class Database {
 	public function open_connection() {
 		$this->conn = mysqli_connect($this->server, $this->user, $this->pwd, $this->name);
 		if(mysqli_connect_errno()) {
-			die ("DB connection failed: " .	mysqli_connect_error() . " (" . mysqli_connect_errno() . ")");
+			// all this information can't go into production as it displays db connection details
+			// die ("DB connection failed: ".mysqli_connect_error()." (".mysqli_connect_errno().")");
+			// also beware of error handling in php.ini as those will display sensitive info as well
+			die ("DB connection failed. That's as much info as u should get.");
 		}
 		$this->query("SET NAMES utf8");
 		$this->query("SET CHARACTER SET utf8");

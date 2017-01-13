@@ -1,6 +1,8 @@
-/*
-Auto1 Blue    #304f95
-Auto1 Orange  #ec7d44
+/* AUto 1 colors
+#304f95   blue
+#4481c2   light blue
+#4a90e2   ligtest blue
+#ec7d44   orange
 */
 
 /* ---------------primary style-------- */
@@ -19,6 +21,7 @@ body {
   font-family: "Open Sans", sans-serif;
   color: #4e5359;
   background-color: #f3f3f5;
+  /*background-color: #ffffff;*/
 }
 body::after {
   /* overlay layer visible on small devices when the right panel slides in */
@@ -52,39 +55,96 @@ a {
    color: #304f95;
   text-decoration: none;
 }
-a:hover { color: #ec7d44; }
+a:hover { color: #4a90e2; }
 
 /* ------------main components---------- */
 header {
-  position: relative;
-  height: 80px;
-  line-height: 80px;
+   margin: 0px;
+    top:0;
+    z-index: 5;
+
+    width: 100%;
+   position: fixed;
+
+  height: 75px;
+  line-height: 75px;
   text-align: center;
-  background-color: #304f95;
+  background-color: #ffffff;
   /*background-color: #a9c056;*/
 }
 header h1 {
-  color: #ffffff;
+  color: #304f95;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-size: 20px;
   font-size: 1.25rem;
 }
-@media only screen and (min-width: 1024px) {
+header img {
+   padding: 21px;
+}
+nav {
+   margin: 0px;
+    top:74px;
+    z-index: 5;
+    width: 100%;
+   position: fixed;
 
+  height: 3px;
+  /*line-height: 75px;*/
+  background-color: #ec7d44;
+}
+footer {
+  margin: 0px;
+  padding: 6px;
+  bottom:0;
+  z-index: 5;
+
+  width: 100%;
+  position: fixed;
+  height: 36px;
+  line-height: 20px;
+  text-align: center;
+  background-color: #304f95;
+  /*background-color: #a9c056;*/
+}
+footer h1 {
+  color: #ffffff;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-size: 15px;
+  /*font-size: 1.25rem;*/
+}
+footer a {
+  color: #ec7d44;
+ }
+
+@media only screen and (min-width: 1024px) {
   header {
-    height: 80px;
-    line-height: 80px;
+    height: 75px;
+    line-height: 75px;
   }
   header h1 {
     font-size: 36px;
     font-size: 2.25rem;
     font-weight: 300;
   }
+}
 
+iframe {
+/*this works!!!*/
+/*border: 2px #d3d3d3 solid;*/
 }
 
 .cd-faq {
+   position:relative;
+	top: 45px;
+   left:20px;
+	float: center;
+   /*height: 300px;*/
+	padding-left: 2em;
+   vertical-align: top;
+	/*background: #EEE4B9;*/
+
   width: 90%;
   max-width: 1024px;
   margin: 2em auto;
@@ -97,7 +157,7 @@ header h1 {
 }
 @media only screen and (min-width: 768px) {
   .cd-faq {
-    position: relative;
+    /*position: relative;*/
     margin: 4em auto;
     box-shadow: none;
   }
@@ -140,6 +200,14 @@ header h1 {
 }
 @media only screen and (min-width: 768px) {
   .cd-faq-categories {
+     position:fixed;
+ 	top: 100px;
+    /*left:20px;*/
+    /*height: 300px;*/
+ 	padding-left: 2em;
+    vertical-align: top;
+ 	/*background: #EEE4B9;*/
+
     width: 20%;
     float: left;
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08);
@@ -167,11 +235,13 @@ header h1 {
 }
 @media only screen and (min-width: 1024px) {
   .cd-faq-categories {
-    position: absolute;
-    top: 0;
+    position: fixed;
+    top: 100px;
     left: 0;
     width: 200px;
     z-index: 2;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08);
+
   }
   .cd-faq-categories a::before {
     /* decorative rectangle on the left visible for the selected item */
@@ -181,7 +251,7 @@ header h1 {
     left: 0;
     height: 100%;
     width: 3px;
-    background-color: #ec7d44;
+    background-color: #4a90e2;
     opacity: 0;
     -webkit-transition: opacity 0.2s;
     -moz-transition: opacity 0.2s;
@@ -342,7 +412,7 @@ header h1 {
 /*titles*/
 .cd-faq-group .cd-faq-title h2 {
   text-transform: uppercase;
-  font-size: 16px;
+  font-size: 15px;
   /*font-size: 0.75rem;*/
   font-weight: 700;
   color: #ec7d44;
@@ -443,6 +513,16 @@ header h1 {
   line-height: 1.4;
   color: #6c7d8e;
 }
+.cd-faq-content a {
+  color: #4481c2;
+  line-height: 1.4;
+  text-decoration: underline;
+}
+.cd-faq-content a:hover {
+  color: #4a90e2;
+}
+
+
 
 @media only screen and (min-width: 768px) {
   .cd-faq-content {
@@ -460,14 +540,30 @@ header h1 {
 /* -------------My crap------- */
 
 #got {
+   font-size: 90%;
   /*font-weight: bold;*/
   color: #304f95;
 }
 
 #not {
+   font-size: 90%;
   /*font-weight: bold;*/
   color: #ec7d44
 }
+
+#status {
+   font-size: 130%;
+   /*font-style: oblique;*/
+  /*font-weight: bold;*/
+  color: #ec7d44
+}
+#next_step {
+   font-size: 90%;
+   /*font-style: oblique;*/
+  /*font-weight: bold;*/
+  color: #7f868e
+}
+
 
 #documents_div {
    background: #ffffff;
@@ -476,9 +572,10 @@ header h1 {
   width: 100%;
 }
 #documents_table {
+   align: center;
   /*font-family: Verdana, "Trebuchet MS", Arial, Helvetica, sans-serif;*/
   border-collapse: collapse;
-  width: 100%;
+  width: 80%;
 }
 #documents_table th {
   background: #304f95; color: #D4E6F4;
@@ -486,14 +583,15 @@ header h1 {
   font-style: oblique;*/
 	text-align: center;
   border: 2px solid #7f868e;
-	width:350px; height:25px;
-  padding: 1px;
+	width:300px;
+   height:25px;
+  padding: 2px;
 }
 #documents_table td {
 	text-align: center;
   border: 2px solid #7f868e;
-	width:350px; height:30px;
-  padding: 1px;
+   height:25px;
+  padding: 3px;
 }
 
 

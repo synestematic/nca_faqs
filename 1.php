@@ -1,33 +1,10 @@
 <?php
-require_once("private/initialize.php");
+setlocale(LC_TIME, 'it_IT');
+setlocale(LC_ALL, 'it_IT');
 
-// $requested_stock_id = $_POST["stock_id"];
-$requested_stock_id = "Af1726";
-$ab = substr($requested_stock_id ,0,2);
-$num = substr($requested_stock_id ,2,5);
+echo utf8_encode(strftime("%A %d %B %Y", time()));
 
-echo $ab;
-echo '<br>';
-echo $num;
-echo '<br>';
-if ( !ctype_alpha($ab) ) {
-  echo 'they are not letters';
-}
-echo '<br>';
-if ( !is_numeric($num) ) {
-  echo 'not number';
-}
+echo "<br>";
+// echo date("F d, Y", strtotime("now"));
 
-
-echo '<br>';
-
-if ( strlen($requested_stock_id) !== 7 || !ctype_alpha($ab) || !is_numeric($num)) {
-  echo '<script>';
-  echo 'alert("Attenzione! Lo StockID dev\'essere composto da 2 lettere iniziali seguite da 5 numeri.");';
-  echo '</script>';
-} else {
-  echo "looks good";
-}
-
-
-?>
+ ?>

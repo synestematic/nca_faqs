@@ -10,15 +10,19 @@ class Transport {
 	private static function instantiate($result) {
 		$object = new self;
 		isset($result["From compound"]) ? $object->from_compound = $result["From compound"] : false ;
-
 		isset($result["To compound"]) ? $object->to_compound = $result["To compound"] : false ;
 
 		if (isset($result["To zip code region"])) {
 			$object->to_zip = sprintf("%02d", $result["To zip code region"]);
 		}
 
-		isset($result["Final Invoice rate"]) ? $object->price = $result["Final Invoice rate"] : false ;
-		isset($result["New final Invoice rate"]) ? $object->price = $result["New final Invoice rate"] : false ;
+		if (isset($result["Final Invoice rate"])) {
+			$object->price = number_format($result["Final Invoice rate"], 2, ',', ' ');
+		}
+		if (isset($result["New final Invoice rate"])) {
+			$object->price = number_format($result["New final Invoice rate"], 2, ',', ' ');
+		}
+
 		return $object;
 	}
 
@@ -56,7 +60,7 @@ class Transport {
 					$result = !empty($result_array) ? array_shift($result_array) : false ;
 					$this->price = $result->price;
 				} else {
-					$this->price = " - ";
+					$this->price = "nessun costo";
 				}
 	}
 
