@@ -9,8 +9,6 @@ require_once(LIB_PATH.DS."config.php");
 require_once(LIB_PATH.DS."functions.php");
 
 require_once(LIB_PATH.DS."class.Database.inc");
-//require_once(LIB_PATH.DS."class.NcaDb.inc");
-//require_once(LIB_PATH.DS."class.FpDb.inc");
 
 require_once(LIB_PATH.DS."class.Transport.inc");
 require_once(LIB_PATH.DS."class.Branch.inc");
