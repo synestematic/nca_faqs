@@ -53,7 +53,7 @@ if (isset($_POST["submit"])) {
 }
 ?>
 <?php include(LIB_PATH.DS."htmls".DS."header.php"); ?>
- <body>
+ <body bgcolor=#ffffff> 
   <div id="transport_div">
     <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
 	 <table id="transport_table">

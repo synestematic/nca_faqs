@@ -1,8 +1,9 @@
 <?php require_once("private/initialize.php"); ?>
 <?php include(LIB_PATH.DS."htmls".DS."header.php"); ?>
-<body>
+<body bgcolor="#f3f3f5">
 <header>
-	<a href="https://www.auto1.com/it/"> <img src="images/logo-small.png" alt="" align="left"> </a>
+	<!-- <a href="https://www.auto1.com/it/"><img src="images/logo-small.png" alt="" align="left"></a> -->
+	<img src="images/logo-small.png" alt="" align="left">
 	<h1><b>Merchants | Domande Frequenti</b></h1>
 </header>
 <nav></nav> <!-- orange line -->
@@ -13,6 +14,7 @@
 		<li><a href="#auto1">Auto1.com</a></li>
 		<li><a href="#iva">IVA</a></li>
 		<li><a href="#bollo">Bollo</a></li>
+		<li><a href="#coc">Coc</a></li>
 		<li><a href="#reclami">Reclami</a></li>
 		<li><a href="#altro">Altro</a></li>
 	</ul>
@@ -53,8 +55,9 @@
 			<li>
 				<a id="transpTool" class="cd-faq-trigger" href="#0">Quali sono i costi di trasporto della mia macchina?</a>
 				<div class="cd-faq-content">
-					<p>Attraverso la seguente piattaforma è possibile calcolare i costi di trasporto in base al punto di partenza e di arrivo della vettura acquistata:</p><br>
+					<p>Attraverso la seguente piattaforma è possibile calcolare i costi di trasporto in base al punto di partenza e di arrivo della vettura acquistata.</p><br>
 					<iframe src="transports.php" height="234px" width="100%"></iframe>
+					<div id="blue">I prezzi sono da considerarsi IVA esclusa per i trasporti nazionali ed esenti IVA per i trasporti internazionali.</div>
 				</div>
 			</li>
 
@@ -62,12 +65,66 @@
 				<a class="cd-faq-trigger" href="#0">Come funziona il processo di consegna della macchina?</a>
 				<div class="cd-faq-content">
 					<p>Sulla DASHBOARD è possibile indicare il metodo di trasporto richiesto: PICK-UP o TRANSPORT.<br>
-					La data di pick-up potrà essere inserita solo una volta ricevuta la mail di avvenuto passaggio di proprietà e a seguito del rilascio del ticket.<br></p>
+					La data di pick-up potrà essere inserita solo dopo il passaggio di proprietà e il ticket per il ritiro della vettura arriverà dopo l'inserimento della stessa.<br></p>
 				</div>
 			</li>
 
 			<li>
-				<a class="cd-faq-trigger" href="#0">Ho scelto come modalità di consegna il trasporto, non mi è ancora arrivata la macchina, come mai?</a>
+				<a class="cd-faq-trigger" href="#0">Qualè l'indirizzo del mio Centro di Stoccaggio?</a>
+				<div class="cd-faq-content">
+					<p>I Centri di Stoccaggio sono aperti tutti i giorni dal Lunedì al Venerdì.</p><br>
+					<table id="documents_table">
+						<tr>
+							<th>Centro di>Stoccaggio</th>
+							<th>Indirizzo</th>
+							<th>Orario</th>
+						</tr>
+						<tr>
+							<td>Cagliari</td>
+							<td>SS. 130 dir Km 2.200 - Decimomannu (CA)</td>
+							<td>h 09:00 -13:00<br>14:00-18:30</td>
+						</tr>
+						<tr>
+							<td>Lucernate di Rho</td>
+							<td>Via Magenta, 60 - Lucernate di Rho</td>
+							<td>h 09:00 -13:00<br>14:00-17:00</td>
+						</tr>
+						<tr>
+							<td>Napoli</td>
+							<td>Via La Monaca, 5 - Capua</td>
+							<td>h 09:00 -13:00<br>14:00-17:30</td>
+						</tr>
+						<tr>
+							<td>Ostia Antica</td>
+							<td>Via Federico Bazzini, 20 - Ostia Antica</td>
+							<td>h 09:00 -13:00<br>14:00-17:00</td>
+						</tr>
+						<tr>
+							<td>Padova</td>
+							<td>Corso Spagna, 12 - Padova</td>
+							<td>h 09:00 -13:00<br>14:00-17:00</td>
+						</tr>
+						<tr>
+							<td>Parma</td>
+							<td>Via Romagnoli,25 San Polo di Torrile - Parma</td>
+							<td>h 08:00-12:00<br>14:00-17:30</td>
+						</tr>
+						<tr>
+							<td>Torino</td>
+							<td>Via G. Reiss Romoli 122/05 INT N - Torino</td>
+							<td>h 08:00-12:00<br>14:00-17:00</td>
+						</tr>
+						<tr>
+							<td>Verona</td>
+							<td>Via dell'Industria , 20 - Castelnuovo del Garda</td>
+							<td>h 09:00-13:00<br>15:00-19:00</td>
+						</tr>
+					</table>
+				</div>
+			</li>
+
+			<li>
+				<a class="cd-faq-trigger" href="#0">Ho scelto come modalità di consegna il trasporto e non mi è ancora arrivata la macchina, come mai?</a>
 				<div class="cd-faq-content">
 					<p>Nel caso il merchant abbia scelto come modalità di consegna il trasporto e questo sia INTERNAZIONALE, le tempistiche sono di 15 giorni lavorativi dall’avvenuto pagamento della fattura di trasporto. Se invece il trasporto fosse NAZIONALE le tempistiche sono di 10 giorni lavorativi dal pagamento della fattura di trasporto e del passaggio di proprietà.</p>
 				</div>
@@ -76,7 +133,7 @@
 			<li>
 				<a class="cd-faq-trigger" href="#0">Non riesco a rispettare la data di pick-up che ho inserito, come posso fare?</a>
 				<div class="cd-faq-content">
-					<p>Auto1 si riserva la possibilità di addebitare al merchant la somma di € 15.00 per ogni giorno successivo alla data di pick-up.</p>
+					<p>Auto1 si riserva la possibilità di addebitare al merchant la somma di € 15,00 per ogni giorno successivo alla data di pick-up.</p>
 				</div>
 			</li>
 
@@ -107,16 +164,19 @@
 			<li>
 				<a class="cd-faq-trigger" href="#0">Come posso chiedere il rimborso dell'IVA?</a>
 				<div class="cd-faq-content">
-					<p>E’ possibile chiedere il rimborso dell’IVA, per le auto IVA ESPOSTA e per le auto importate in Italia dall’estero, solo se esse hanno raggiunto la loro destinazione finale e il merchant ha pagato la fattura ed è in possesso della bolla di trasporto.  È possibile chiedere il rimborso inviando una mail a <a href="mailto:vat-refund-it@auto1.com">vat-refund-it@auto1.com</a>
+					<p>E’ possibile chiedere il rimborso dell’IVA, per le auto IVA ESPOSTA e per le auto importate in Italia dall’estero, solo se esse hanno raggiunto la loro destinazione finale e il merchant ha pagato la fattura ed è in possesso della bolla di trasporto.  È possibile chiedere il rimborso inviando una mail a <a href="mailto:iva.italy@auto1.com">iva.italy@auto1.com</a>
 					allegando modulo di rimborso corrispondente alla nazionalità dell’auto, CMR, IBAN, SWIFT e intestatario del conto.<br><br></p>
-					<a href="files/purchase_declarations_for_export_de.pdf">Scarica il modulo per la GERMANIA</a><br>
-					<a href="files/purchase_declarations_for_export_fr.pdf">Scarica il modulo per la FRANCIA</a><br>
-					<a href="files/purchase_declarations_for_export_es.pdf">Scarica il modulo per la SPAGNA</a><br>
-					<a href="files/purchase_declarations_for_export_be.pdf">Scarica il modulo per il BELGIO</a><br>
-					<a href="files/purchase_declarations_for_export_nl.pdf">Scarica il modulo per l'OLANDA</a><br>
-					<a href="files/purchase_declarations_for_export_pl.pdf">Scarica il modulo per la POLONIA</a><br>
-					<a href="files/purchase_declarations_for_export_se.pdf">Scarica il modulo per la SVEZIA</a><br>
-					<a href="files/purchase_declarations_for_export_at.pdf">Scarica il modulo per l'AUSTRIA</a><br>
+					<a href="files/purchase_declarations_for_export_de.pdf" target="_blank">Scarica il modulo per la GERMANIA</a><br>
+					<a href="files/purchase_declarations_for_export_de_new.pdf" target="_blank">Scarica il modulo per la GERMANIA</a> (per auto acquistate dal 16/01/2017 in poi)<br>
+					<a href="files/purchase_declarations_for_export_fr_new.pdf" target="_blank">Scarica il modulo per la FRANCIA</a><br>
+					<a href="files/purchase_declarations_for_export_es.pdf" target="_blank">Scarica il modulo per la SPAGNA</a><br>
+					<a href="files/purchase_declarations_for_export_be.pdf" target="_blank">Scarica il modulo per il BELGIO</a><br>
+					<a href="files/purchase_declarations_for_export_nl.pdf" target="_blank">Scarica il modulo per l'OLANDA</a><br>
+					<a href="files/purchase_declarations_for_export_nl_new.pdf" target="_blank">Scarica il modulo per l'OLANDA</a> (validità dal 24/01/2017)<br>
+					<a href="files/purchase_declarations_for_export_pl.pdf" target="_blank">Scarica il modulo per la POLONIA</a><br>
+					<a href="files/purchase_declarations_for_export_se.pdf" target="_blank">Scarica il modulo per la SVEZIA</a><br>
+					<a href="files/purchase_declarations_for_export_at.pdf" target="_blank">Scarica il modulo per l'AUSTRIA</a><br>
+					<a href="files/purchase_declarations_for_export_at_new.pdf" target="_blank">Scarica il modulo per l'AUSTRIA</a> (validità dal 24/01/2017)<br>
 					<!-- </p> -->
 				</div>
 			</li>
@@ -135,13 +195,27 @@
 
 		</ul>
 
+		<ul id="coc" class="cd-faq-group">
+			<li class="cd-faq-title"><h2>COC</h2></li>
+
+			<li>
+				<a class="cd-faq-trigger" href="#0">Come faccio per ottenere il Certificato di Conformità dell'auto?</a>
+				<div class="cd-faq-content">
+					<p>Se questo documento era indicato nella scheda del veicolo e non è stato recapitato potete richiederlo aprendo un reclamo. Se invece il documento non era in nostro possesso potete richiederlo sul sito <a href="https://www.eurococ.eu/it" target="_blank">www.eurococ.eu</a>
+					<br>
+					</p>
+				</div>
+			</li>
+
+		</ul>
+
 					<ul id="reclami" class="cd-faq-group">
 						<li class="cd-faq-title"><h2>RECLAMI</h2></li>
 
 						<li>
 							<a class="cd-faq-trigger" href="#0">Come faccio per presentare un reclamo?</a>
 							<div class="cd-faq-content">
-								<p>E’ possibile presentare un reclamo direttamente dalla propria DASHBOARD.<br><br><a href="files/guida_reclami.pdf">Scarica la GUIDA RECLAMI</a>
+								<p>E’ possibile presentare un reclamo direttamente dalla propria DASHBOARD.<br><br><a href="files/guida_reclami.pdf" target="_blank">Scarica la GUIDA RECLAMI</a>
 								<br>
 								</p>
 							</div>
@@ -154,6 +228,15 @@
 							</div>
 						</li>
 
+						<li>
+							<a class="cd-faq-trigger" href="#0">Ho presentato un reclamo e non ho ancora ricevuto risposta, come mai?</a>
+							<div class="cd-faq-content">
+								<p>La risposta al reclamo è prevista dopo 10 giorni dalla presentazione dello stesso, se completo della documentazione richiesta.<br>
+								<br>
+								</p>
+							</div>
+						</li>
+
 					</ul>
 
 					<ul id="altro" class="cd-faq-group">
@@ -161,7 +244,7 @@
 						<li>
 							<a class="cd-faq-trigger" href="#0">La mia domanda non è presente tra quelle sopra elencate, come posso fare?</a>
 							<div class="cd-faq-content">
-								<p>Per qualsiasi domanda è possibile contattare il supporto telefonico al numero: <a href="tel:00390294751066">+39 02 9475 1066</a> oppure inviare una mail all’indirizzo <a href="mailto:helpdesk-it@auto1.com">helpdesk-it@auto1.com</a> .<br></p>
+								<p>Per qualsiasi domanda è possibile contattare il supporto telefonico al numero <a href="tel:00390294751066">+39 02 9475 1066</a> oppure inviare una mail all’indirizzo <a href="mailto:aftersales.italy@auto1.com">aftersales.italy@auto1.com</a> .<br></p>
 							</div>
 						</li>
 					</ul>

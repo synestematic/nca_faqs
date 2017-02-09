@@ -15,7 +15,7 @@ if (isset($_POST["submit"])) {
 }
 ?>
 <?php include(LIB_PATH.DS."htmls".DS."header.php"); ?>
- <body background="#ffffff">
+ <body bgcolor="#ffffff">
   <div id="documents_div" align="left">
     <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
       <input type="submit" name="submit" value="Cerca" />
@@ -54,8 +54,7 @@ if (isset($_POST["submit"])) {
   </div>
   <?php
   if (isset($_POST["submit"])) {
-   //   echo $veicolo_richiesto->stock_id;
-   //   echo $veicolo_richiesto->tipo;
+    // this is done at the end so the message appears after the html has been rendered
 
     $ab = substr($requested_stock_id ,0,2);
     $num = substr($requested_stock_id ,2,5);

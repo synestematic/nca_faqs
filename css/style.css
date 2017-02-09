@@ -20,7 +20,7 @@ body {
   font-size: 100%;
   font-family: "Open Sans", sans-serif;
   color: #4e5359;
-  background-color: #f3f3f5;
+ /* background-color: #f3f3f5;*/
   /*background-color: #ffffff;*/
 }
 body::after {
@@ -563,7 +563,13 @@ iframe {
   /*font-weight: bold;*/
   color: #7f868e
 }
-
+#blue {
+   font-size: 90%;
+   line-height: 1.6;
+   /*font-style: oblique;*/
+  /*font-weight: bold;*/
+  color: #304f95
+}
 
 #documents_div {
    background: #ffffff;
@@ -575,7 +581,7 @@ iframe {
    align: center;
   /*font-family: Verdana, "Trebuchet MS", Arial, Helvetica, sans-serif;*/
   border-collapse: collapse;
-  width: 80%;
+  width: 100%;
 }
 #documents_table th {
   background: #304f95; color: #D4E6F4;
