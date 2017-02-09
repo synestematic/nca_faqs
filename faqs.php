@@ -167,10 +167,11 @@
 					<p>E’ possibile chiedere il rimborso dell’IVA, per le auto IVA ESPOSTA e per le auto importate in Italia dall’estero, solo se esse hanno raggiunto la loro destinazione finale e il merchant ha pagato la fattura ed è in possesso della bolla di trasporto.  È possibile chiedere il rimborso inviando una mail a <a href="mailto:iva.italy@auto1.com">iva.italy@auto1.com</a>
 					allegando modulo di rimborso corrispondente alla nazionalità dell’auto, CMR, IBAN, SWIFT e intestatario del conto.<br><br></p>
 					<a href="files/purchase_declarations_for_export_de.pdf" target="_blank">Scarica il modulo per la GERMANIA</a><br>
-					<a href="files/purchase_declarations_for_export_de_new.pdf" target="_blank">Scarica il modulo per la GERMANIA</a> (per auto acquistate dal 16/01/2017 in poi)<br>
+					<a href="files/purchase_declarations_for_export_de_new.pdf" target="_blank">Scarica il modulo per la GERMANIA</a> (per auto acquistate dal 16/01/2017)<br>
 					<a href="files/purchase_declarations_for_export_fr_new.pdf" target="_blank">Scarica il modulo per la FRANCIA</a><br>
 					<a href="files/purchase_declarations_for_export_es.pdf" target="_blank">Scarica il modulo per la SPAGNA</a><br>
 					<a href="files/purchase_declarations_for_export_be.pdf" target="_blank">Scarica il modulo per il BELGIO</a><br>
+					<a href="files/purchase_declarations_for_export_be_new.pdf" target="_blank">Scarica il modulo per il BELGIO</a> (per auto acquistate dal 09/02/2017 e per auto vendute dal 11/02/2017)<br>
 					<a href="files/purchase_declarations_for_export_nl.pdf" target="_blank">Scarica il modulo per l'OLANDA</a><br>
 					<a href="files/purchase_declarations_for_export_nl_new.pdf" target="_blank">Scarica il modulo per l'OLANDA</a> (validità dal 24/01/2017)<br>
 					<a href="files/purchase_declarations_for_export_pl.pdf" target="_blank">Scarica il modulo per la POLONIA</a><br>
