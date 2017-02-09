@@ -57,7 +57,7 @@ class Branch {
 	}
 
 	public static function enumerate_branches() {
-		return self::find_by_sql("SELECT DISTINCT `filiale` FROM branches WHERE filiale != 'Milano HQ'");
+		return self::find_by_sql("SELECT DISTINCT `filiale` FROM branches WHERE filiale != 'Milano HQ' ORDER BY filiale ASC");
 	}
 
 	public static function branches_menu($name) {
