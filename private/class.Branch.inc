@@ -15,7 +15,7 @@ class Branch {
 		if (isset($result["lc_id"])) {
 			$object->lc_id = $result["lc_id"];
 			$lc = Lc::find_by_id($object->lc_id);
-      $object->lc_associato = $lc->centro;
+	      $object->lc_associato = $lc->centro;
 		}
 
 		isset($result["filiale"]) ? $object->filiale = $result["filiale"] : false ;

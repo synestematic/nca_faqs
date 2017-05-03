@@ -15,12 +15,8 @@ class Transport {
 		if (isset($result["To zip code region"])) {
 			$object->to_zip = sprintf("%02d", $result["To zip code region"]);
 		}
-
-		if (isset($result["Final Invoice rate"])) {
-			$object->price = number_format($result["Final Invoice rate"], 2, ',', ' ');
-		}
-		if (isset($result["New final Invoice rate"])) {
-			$object->price = number_format($result["New final Invoice rate"], 2, ',', ' ');
+		if (isset($result["Final invoice rate"])) {
+			$object->price = number_format($result["Final invoice rate"], 2, ',', ' ');
 		}
 
 		return $object;
@@ -34,10 +30,6 @@ class Transport {
 			$object_array[] = self::instantiate($result);
 		}
 		return $object_array;
-	}
-
-	public static function find_all() {
-		return self::find_by_sql("SELECT * FROM c2c_dom");
 	}
 
 	public function check_for_same_lc() {
@@ -55,7 +47,7 @@ class Transport {
 	public function lc_to_lc() {
 				$check_same_lc = $this->check_for_same_lc();
 				if ($check_same_lc == false ) {
-					$sql = "SELECT * FROM c2c_dom WHERE `From compound` = '$this->from_compound' AND `To compound` = '$this->to_compound' LIMIT 1";
+					$sql = "SELECT * FROM c2c_dom2 WHERE `From compound` = '$this->from_compound' AND `To compound` = '$this->to_compound' LIMIT 1";
 					$result_array = self::find_by_sql($sql);
 					$result = !empty($result_array) ? array_shift($result_array) : false ;
 					$this->price = $result->price;
@@ -66,14 +58,14 @@ class Transport {
 
 	public function lcx_to_lc() {
 			if ($this->to_compound == "Logistikzentrum Lucernate di Rho" || $this->to_compound == "Logistikzentrum Verona") {
-				$sql = "SELECT * FROM c2c_intl WHERE `From compound` = '$this->from_compound' AND `To compound` = '$this->to_compound' LIMIT 1";
+				$sql = "SELECT * FROM c2c_intl2 WHERE `From compound` = '$this->from_compound' AND `To compound` = '$this->to_compound' LIMIT 1";
 				$result_array = self::find_by_sql($sql);
 				$result = !empty($result_array) ? array_shift($result_array) : false ;
 				$this->price = $result->price;
 
 			} else {
 
-				$sql = "SELECT * FROM c2c_intl WHERE `From compound` = '$this->from_compound' AND `To compound` = 'Logistikzentrum Lucernate di Rho' LIMIT 1";
+				$sql = "SELECT * FROM c2c_intl2 WHERE `From compound` = '$this->from_compound' AND `To compound` = 'Logistikzentrum Lucernate di Rho' LIMIT 1";
 				$result_array = self::find_by_sql($sql);
 				$tratto1 = !empty($result_array) ? array_shift($result_array) : false ;
 
@@ -88,14 +80,14 @@ class Transport {
 	}
 
 	public function lc_to_zip() {
-			$sql = "SELECT * FROM c2m_dom WHERE `From compound` = '$this->from_compound' AND `To zip code region` = '$this->to_zip' LIMIT 1";
+			$sql = "SELECT * FROM c2m_dom2 WHERE `From compound` = '$this->from_compound' AND `To zip code region` = '$this->to_zip' LIMIT 1";
 			$result_array = self::find_by_sql($sql);
 			$result = !empty($result_array) ? array_shift($result_array) : false ;
 			$this->price = $result->price;
 	}
 
 	public function lcx_to_zip() {
-			$sql = "SELECT * FROM c2m_intl WHERE `From compound` = '$this->from_compound' AND `To zip code region` = '$this->to_zip' LIMIT 1";
+			$sql = "SELECT * FROM c2m_intl2 WHERE `From compound` = '$this->from_compound' AND `To zip code region` = '$this->to_zip' LIMIT 1";
 			$result_array = self::find_by_sql($sql);
 			$result = !empty($result_array) ? array_shift($result_array) : false ;
 			$this->price = $result->price;
@@ -114,7 +106,7 @@ class Transport {
 	}
 
 	public static function enumerate_lcs() {
-		return self::find_by_sql("SELECT DISTINCT `From compound` FROM c2c_dom ORDER BY `From compound` ASC");
+		return self::find_by_sql("SELECT DISTINCT `From compound` FROM c2c_dom2 ORDER BY `From compound` ASC");
 	}
 	public static function lcs_menu($name) {
 		global $_POST;
@@ -134,11 +126,10 @@ class Transport {
 			echo "</option>";
 		}
 		echo "</select>";
-//		mysqli_free_result($field_set);
 	}
 
 	public static function enumerate_lcxs() {
-		return self::find_by_sql("SELECT DISTINCT `From compound` FROM c2c_intl ORDER BY `From compound` ASC");
+		return self::find_by_sql("SELECT DISTINCT `From compound` FROM c2c_intl2 ORDER BY `From compound` ASC");
 	}
 	public static function lcxs_menu($name) {
 		global $_POST;
@@ -153,11 +144,10 @@ class Transport {
 			echo "</option>";
 		}
 		echo "</select>";
-//		mysqli_free_result($field_set);
 	}
 
 	public static function enumerate_zips() {
-		return self::find_by_sql("SELECT DISTINCT `To zip code region` FROM c2m_dom ORDER BY `To zip code region` ASC");
+		return self::find_by_sql("SELECT DISTINCT `To zip code region` FROM c2m_dom2 ORDER BY `To zip code region` ASC");
 	}
 	public static function zips_menu($name) {
 		global $_POST;
@@ -165,7 +155,6 @@ class Transport {
 		echo "<option selected>";
 		echo "";
 		echo "</option>";
- 		//mancano i zip: 49 68 69 77 78 79
 		$zips = self::enumerate_zips();
 		foreach ($zips as $zip) {
 			echo ($zip->to_zip == $_POST["$name"]) ? '<option selected>' : '<option>' ;
