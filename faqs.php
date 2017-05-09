@@ -70,54 +70,59 @@
 			</li>
 
 			<li>
-				<a class="cd-faq-trigger" href="#0">Qualè l'indirizzo del mio Centro di Stoccaggio?</a>
+				<a class="cd-faq-trigger" href="#0">Dove si trova il mio Centro di Stoccaggio più vicino?</a>
 				<div class="cd-faq-content">
 					<p>I Centri di Stoccaggio sono aperti tutti i giorni dal Lunedì al Venerdì.</p><br>
 					<table id="documents_table">
 						<tr>
-							<th>Centro di>Stoccaggio</th>
+							<th>Centro di Stoccaggio</th>
 							<th>Indirizzo</th>
 							<th>Orario</th>
 						</tr>
 						<tr>
 							<td>Cagliari</td>
-							<td>SS. 130 dir Km 2.200 - Decimomannu (CA)</td>
-							<td>h 09:00 -13:00<br>14:00-18:30</td>
+							<td>SS. 130 dir Km 2.200 - Decimomannu</td>
+							<td>h 09:00 -13:00<br>15:00 - 18:00</td>
+						</tr>
+						<tr>
+							<td>Firenze</td>
+							<td>Via di San Bartolo a Cintoia 94 - Firenze</td>
+							<td>h 08:30 -12:30<br>14:30 - 18:30</td>
 						</tr>
 						<tr>
 							<td>Lucernate di Rho</td>
-							<td>Via Magenta, 60 - Lucernate di Rho</td>
-							<td>h 09:00 -13:00<br>14:00-17:00</td>
+							<td>Via Magenta 60 - Lucernate di Rho</td>
+							<td>h 09:00 - 13:00<br>14:00 - 17:00</td>
 						</tr>
 						<tr>
 							<td>Napoli</td>
-							<td>Via La Monaca, 5 - Capua</td>
-							<td>h 09:00 -13:00<br>14:00-17:30</td>
+							<td>Via La Monaca 5 - Capua</td>
+							<td>h 09:00 - 13:00<br>15:00 - 17:30</td>
 						</tr>
 						<tr>
 							<td>Ostia Antica</td>
-							<td>Via Federico Bazzini, 20 - Ostia Antica</td>
-							<td>h 09:00 -13:00<br>14:00-17:00</td>
+							<td>Via Federico Bazzini 20 - Ostia Antica</td>
+							<td>h 08:30 - 12:30<br>14:30 - 17:30</td>
 						</tr>
 						<tr>
 							<td>Padova</td>
-							<td>Corso Spagna, 12 - Padova</td>
-							<td>h 09:00 -13:00<br>14:00-17:00</td>
+							<td>Corso Spagna 12 - Padova</td>
+							<td>h 09:00 - 13:00<br>14:00 - 17:00</td>
 						</tr>
 						<tr>
 							<td>Parma</td>
-							<td>Via Romagnoli,25 San Polo di Torrile - Parma</td>
-							<td>h 08:00-12:00<br>14:00-17:30</td>
+							<td>Via Romagnoli 25 San Polo di Torrile - Parma</td>
+							<td>h 08:00 - 12:00<br>14:00 - 17:30</td>
 						</tr>
 						<tr>
 							<td>Torino</td>
 							<td>Via G. Reiss Romoli 122/05 INT N - Torino</td>
-							<td>h 08:00-12:00<br>14:00-17:00</td>
+							<td>h 08:00 - 12:00<br>14:00 - 17:00</td>
 						</tr>
 						<tr>
 							<td>Verona</td>
-							<td>Via dell'Industria , 20 - Castelnuovo del Garda</td>
-							<td>h 09:00-13:00<br>15:00-19:00</td>
+							<td>Via dell'Industria 20 - Castelnuovo del Garda</td>
+							<td>h 09:00 - 12:30<br>15:00 - 18:00</td>
 						</tr>
 					</table>
 				</div>
