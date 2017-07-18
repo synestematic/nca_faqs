@@ -63,11 +63,11 @@ class Database {
 }
 
 $local_db = new Database();
-$local_db->set_attributes(DB_SERVER, DB_USER, DB_PASS, DB_DB);
+$local_db->set_attributes(LOCAL_SERVER, LOCAL_USER, LOCAL_PASS, LOCAL_DB);
 $local_db->open_connection();
 
 $nca_db = new Database();
-$nca_db->set_attributes(NCA_SERVER, NCA_USER, NCA_PASS, NCA_DB);
+$nca_db->set_attributes(PORTALE_SERVER, PORTALE_USER, PORTALE_PASS, PORTALE_DB);
 $nca_db->open_connection();
 
 $fp_db = new Database();
